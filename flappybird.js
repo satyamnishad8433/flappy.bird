@@ -30,7 +30,7 @@ let topPipeImg;
 let bottomPipeImg;
 
 //physics
-let velocityX = -4; //pipes moving left speed
+let velocityX = -6; //pipes moving left speed
 let velocityY = 0; //bird jump speed
 let gravity = 0.4;
 
@@ -67,7 +67,7 @@ window.onload = function() {
     bottomPipeImg.src = "./bottompipe.png";
 
     requestAnimationFrame(update);
-    setInterval(placePipes, 1500); //every 1.5 seconds
+    setInterval(placePipes, 1000); //every 1.5 seconds
     document.addEventListener("keydown", moveBird);
     document.addEventListener("touchstart", moveBird);
 
@@ -119,7 +119,7 @@ function update() {
     context.fillText(score, 5, 45);
     context.font="12px sans-serif";
     context.fillStyle = "black";
-    context.fillText("Developed By:", 165,35)
+    context.fillText("Developed By:", 200,35)
     context.font="15px sans-serif";
     context.fillStyle = "white"; 
     context.fillText("Nishad Satyam", 250,35)
