@@ -30,7 +30,7 @@ let topPipeImg;
 let bottomPipeImg;
 
 //physics
-let velocityX = -2; //pipes moving left speed
+let velocityX = -4; //pipes moving left speed
 let velocityY = 0; //bird jump speed
 let gravity = 0.4;
 
@@ -39,7 +39,10 @@ let score = 0;
 
 let wingSound = new Audio("./sfx_wing.wav");
 let hitSound = new Audio("./sfx_hit.wav");
-let bgm = new Audio("./bgm_mario.mp3")
+let bgm = new Audio("./bgm_mario.mp3");
+bgm.loop = true;
+
+
 window.onload = function() {
     board = document.getElementById("board");
     board.height = boardHeight;
@@ -64,11 +67,11 @@ window.onload = function() {
     bottomPipeImg.src = "./bottompipe.png";
 
     requestAnimationFrame(update);
-    setInterval(placePipes, 3000); //every 1.5 seconds
+    setInterval(placePipes, 1500); //every 1.5 seconds
     document.addEventListener("keydown", moveBird);
     document.addEventListener("touchstart", moveBird);
 
-    bgm.play();
+    
 }; 
 
 function update() {
@@ -121,7 +124,7 @@ function update() {
     context.fillStyle = "white"; 
     context.fillText("Nishad Satyam", 250,35)
 
-    if (gameOver) {
+    if (gameOver) { 
         context.font="30px sans-serif";
         context.fillStyle = "white";
         context.fillText("Click to Start", 100, 400);
@@ -133,13 +136,14 @@ function update() {
         context.font="60px sans-serif";
         context.fillStyle = "black";
         context.fillText(score, 160, 360);
-        bgm = poused();
+    
 
     }
 }
 
 function placePipes() {
     if (gameOver) {
+        bgm.paused();
         return;
     }
 
@@ -174,7 +178,9 @@ function placePipes() {
 function moveBird(e) {
     
     if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX" || e.type === "touchstart") {
-
+        if(bgm.paused){
+            bgm.play();
+        }
         wingSound.play();
         //jump
         velocityY = -6;
