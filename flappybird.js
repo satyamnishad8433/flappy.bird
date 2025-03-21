@@ -136,6 +136,7 @@ function update() {
         context.font="60px sans-serif";
         context.fillStyle = "black";
         context.fillText(score, 160, 360);
+        bgm.paused();
     
 
     }
