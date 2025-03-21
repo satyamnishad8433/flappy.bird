@@ -119,7 +119,7 @@ function update() {
     context.fillText(score, 5, 45);
     context.font="12px sans-serif";
     context.fillStyle = "black";
-    context.fillText("Developed By:", 200,35)
+    context.fillText("Developed By:", 165,35)
     context.font="15px sans-serif";
     context.fillStyle = "white"; 
     context.fillText("Nishad Satyam", 250,35)
