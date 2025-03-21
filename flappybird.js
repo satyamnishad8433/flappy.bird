@@ -61,7 +61,7 @@ window.onload = function() {
     bottomPipeImg.src = "./bottompipe.png";
 
     requestAnimationFrame(update);
-    setInterval(placePipes, 2500); //every 1.5 seconds
+    setInterval(placePipes, 3000); //every 1.5 seconds
     document.addEventListener("keydown", moveBird);
 }
 
@@ -111,7 +111,7 @@ function update() {
     context.fillStyle = "black";
     context.fillText("Developed By:", 165,35)
     context.font="15px sans-serif";
-    context.fillStyle = "red"; 
+    context.fillStyle = "white"; 
     context.fillText("Nishad Satyam", 250,35)
 
     if (gameOver) {
@@ -162,8 +162,12 @@ function placePipes() {
     pipeArray.push(bottomPipe);
 }
 
+
 function moveBird(e) {
-    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX") {
+    
+    if (document.addEventListener("click",function(event) {
+        console.log("mouse clicked at: X =", event.clientX,"Y =", event.clientY);
+    }));
         //jump
         velocityY = -6;
 
