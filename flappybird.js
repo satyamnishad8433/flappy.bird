@@ -66,10 +66,8 @@ window.onload = function() {
     requestAnimationFrame(update);
     setInterval(placePipes, 3000); //every 1.5 seconds
     document.addEventListener("keydown", moveBird);
-    document.addEventListener("touchstart", e => {
-        console.log("start")
-    
-});
+    document.addEventListener("touchstart", moveBird);
+
     bgm.play();
 }; 
 
@@ -135,6 +133,7 @@ function update() {
         context.font="60px sans-serif";
         context.fillStyle = "black";
         context.fillText(score, 160, 360);
+        bgm = poused();
 
     }
 }
@@ -174,7 +173,7 @@ function placePipes() {
 
 function moveBird(e) {
     
-    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX" || e.code == "touchstart") {
+    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX" || e.type === "touchstart") {
 
         wingSound.play();
         //jump
