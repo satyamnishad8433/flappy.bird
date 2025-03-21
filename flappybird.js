@@ -37,6 +37,9 @@ let gravity = 0.4;
 let gameOver = false;
 let score = 0;
 
+let wingSound = new Audio("./sfx_wing.wav");
+let hitSound = new Audio("./sfx_hit.wav");
+let bgm = new Audio("./bgm_mario.mp3")
 window.onload = function() {
     board = document.getElementById("board");
     board.height = boardHeight;
@@ -63,7 +66,12 @@ window.onload = function() {
     requestAnimationFrame(update);
     setInterval(placePipes, 3000); //every 1.5 seconds
     document.addEventListener("keydown", moveBird);
-}
+    document.addEventListener("touchstart", e => {
+        console.log("start")
+    
+});
+    bgm.play();
+}; 
 
 function update() {
     requestAnimationFrame(update);
@@ -94,6 +102,7 @@ function update() {
         }
 
         if (detectCollision(bird, pipe)) {
+            hitSound.play();
             gameOver = true;
         }
     }
@@ -165,9 +174,9 @@ function placePipes() {
 
 function moveBird(e) {
     
-    if (document.addEventListener("click",function(event) {
-        console.log("mouse clicked at: X =", event.clientX,"Y =", event.clientY);
-    }));
+    if (e.code == "Space" || e.code == "ArrowUp" || e.code == "KeyX" || e.code == "touchstart") {
+
+        wingSound.play();
         //jump
         velocityY = -6;
 
@@ -179,7 +188,7 @@ function moveBird(e) {
             gameOver = false;
         }
     }
-
+}
 
 function detectCollision(a, b) {
     return a.x < b.x + b.width &&   //a's top left corner doesn't reach b's top right corner
